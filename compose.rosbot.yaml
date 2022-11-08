@@ -1,0 +1,37 @@
+services:
+
+  discovery-server:
+    image: ros:humble-ros-core
+    network_mode: host
+    ipc: host
+    command: fast-discovery-server -i 0
+
+  rplidar:
+    image: husarion/rplidar:humble
+    network_mode: host
+    ipc: host
+    devices:
+      - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
+    environment:
+      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
+    command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
+
+  rosbot:
+    image: husarion/rosbot:humble
+    network_mode: host
+    ipc: host
+    environment:
+      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
+    command: ros2 launch rosbot_bringup rosbot_bringup.launch.py
+  
+  microros:
+    image: microros/micro-ros-agent:humble
+    network_mode: host
+    ipc: host
+    devices:
+      - ${SERIAL_PORT:?err}
+    volumes:
+      - ./micro-ros_entrypoint.sh:/micro-ros_entrypoint.sh
+    environment:
+      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
+    command: serial -D $SERIAL_PORT serial -b 576000 # -v6
