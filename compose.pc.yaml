@@ -1,7 +1,7 @@
 services:
 
   rviz:
-    image: husarion/rviz2:humble
+    image: husarion/rviz2:galactic
     network_mode: host
     ipc: host
     volumes:
