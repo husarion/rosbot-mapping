@@ -6,7 +6,25 @@ A GitHub template for ROSbot: creating a map a using Slam Toolbox
 
 Connect a gampad to USB port of your PC/laptop. 
 
-Then create `.env` file (based on `.env.template`) and paste IP address of ROSbot there.
+Then create `.env` file 
+
+```bash
+cp .env.template .env
+```
+
+and paste IP address of ROSbot there.
+
+```
+ROSBOT_IP=192.168.0.153
+LIDAR_SERIAL=/dev/ttyUSB0
+LIDAR_BAUDRATE=115200
+```
+
+## ROSbot
+
+```bash
+docker compose -f compose.rosbot.yaml up
+```
 
 ## PC
 
@@ -17,11 +35,8 @@ Sync workspace with ROSbot
 ```
 
 ```bash
+xhost +local:docker && \
 docker compose -f compose.pc.yaml up
 ```
 
-## ROSbot
 
-```bash
-docker compose -f compose.rosbot.yaml up
-```
