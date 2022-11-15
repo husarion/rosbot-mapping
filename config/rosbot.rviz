@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /tf1
         - /tf1/Frames1
         - /robot_model1
       Splitter Ratio: 0.6294117569923401
@@ -49,52 +50,52 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
         base_link:
           Value: true
         body_link:
-          Value: true
+          Value: false
         camera_link:
-          Value: true
+          Value: false
         cover_link:
+          Value: false
+        fl_range:
+          Value: false
+        fl_wheel_link:
           Value: true
-        front_left_wheel_link:
-          Value: true
-        front_right_wheel_link:
+        fr_range:
+          Value: false
+        fr_wheel_link:
           Value: true
         imu_link:
-          Value: true
-        lidar_link:
-          Value: true
-        lidar_link_laser_link:
-          Value: true
+          Value: false
+        laser:
+          Value: false
         map:
-          Value: true
+          Value: false
         odom:
-          Value: true
+          Value: false
         orbbec_astra_depth_link:
-          Value: true
-        orbbec_astra_depth_refference_link:
-          Value: true
+          Value: false
+        orbbec_astra_depth_reference_link:
+          Value: false
         orbbec_astra_link:
+          Value: false
+        rl_range:
+          Value: false
+        rl_wheel_link:
           Value: true
-        range_left_front:
-          Value: true
-        range_left_rear:
-          Value: true
-        range_right_front:
-          Value: true
-        range_right_rear:
-          Value: true
-        rear_left_wheel_link:
-          Value: true
-        rear_right_wheel_link:
+        rplidar_a2_link:
+          Value: false
+        rr_range:
+          Value: false
+        rr_wheel_link:
           Value: true
       Marker Scale: 0.4000000059604645
       Name: tf
       Show Arrows: true
       Show Axes: true
-      Show Names: true
+      Show Names: false
       Tree:
         map:
           odom:
@@ -103,29 +104,29 @@ Visualization Manager:
                 camera_link:
                   orbbec_astra_link:
                     orbbec_astra_depth_link:
-                      orbbec_astra_depth_refference_link:
+                      orbbec_astra_depth_reference_link:
                         {}
                 cover_link:
-                  lidar_link:
-                    lidar_link_laser_link:
+                  rplidar_a2_link:
+                    laser:
                       {}
-                front_left_wheel_link:
+                fl_range:
                   {}
-                front_right_wheel_link:
+                fl_wheel_link:
+                  {}
+                fr_range:
+                  {}
+                fr_wheel_link:
                   {}
                 imu_link:
                   {}
-                range_left_front:
+                rl_range:
                   {}
-                range_left_rear:
+                rl_wheel_link:
                   {}
-                range_right_front:
+                rr_range:
                   {}
-                range_right_rear:
-                  {}
-                rear_left_wheel_link:
-                  {}
-                rear_right_wheel_link:
+                rr_wheel_link:
                   {}
       Update Interval: 0
       Value: true
@@ -185,40 +186,6 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz_default_plugins/LaserScan
-      Color: 255; 255; 255
-      Color Transformer: Intensity
-      Decay Time: 0
-      Enabled: true
-      Invert Rainbow: false
-      Max Color: 255; 255; 255
-      Max Intensity: 47
-      Min Color: 0; 0; 0
-      Min Intensity: 47
-      Name: scan_filtered
-      Position Transformer: XYZ
-      Selectable: true
-      Size (Pixels): 7
-      Size (m): 0.009999999776482582
-      Style: Points
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /scan_filtered
-      Use Fixed Frame: true
-      Use rainbow: true
-      Value: true
-    - Alpha: 1
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: /robot_models/rosbot2/rosbot2.urdf
@@ -229,97 +196,17 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /robot_description
-      Enabled: true
+      Enabled: false
       Links:
         All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        body_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        cover_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fl_range:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        fl_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fr_range:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        fr_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        imu_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        laser:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        orbbec_astra_depth_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        orbbec_astra_depth_reference_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        orbbec_astra_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rl_range:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        rl_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rplidar_a2_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rr_range:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        rr_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Name: robot_model
       TF Prefix: ""
       Update Interval: 0
-      Value: true
+      Value: false
       Visual Enabled: true
   Enabled: true
   Global Options:
@@ -367,7 +254,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.168261766433716
+      Distance: 1.5487525463104248
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
