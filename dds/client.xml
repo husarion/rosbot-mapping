@@ -16,7 +16,7 @@
                 <userTransports>
                     <transport_id>HusarnetTransport</transport_id>
                 </userTransports>
-                <useBuiltinTransports>true</useBuiltinTransports>
+                <!-- <useBuiltinTransports>false</useBuiltinTransports> -->
                 <builtin>
                     <discovery_config>
                         <discoveryProtocol>SUPER_CLIENT</discoveryProtocol>

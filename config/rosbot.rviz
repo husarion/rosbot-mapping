@@ -5,10 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /tf1
         - /tf1/Frames1
-        - /scan1
-        - /robot_model1
       Splitter Ratio: 0.6294117569923401
     Tree Height: 1541
   - Class: rviz_common/Selection
@@ -98,37 +95,39 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
+        base_link:
+          body_link:
+            camera_link:
+              orbbec_astra_link:
+                orbbec_astra_depth_link:
+                  orbbec_astra_depth_reference_link:
+                    {}
+            cover_link:
+              rplidar_a2_link:
+                laser:
+                  {}
+            fl_range:
+              {}
+            fl_wheel_link:
+              {}
+            fr_range:
+              {}
+            fr_wheel_link:
+              {}
+            imu_link:
+              {}
+            rl_range:
+              {}
+            rl_wheel_link:
+              {}
+            rr_range:
+              {}
+            rr_wheel_link:
+              {}
         map:
-          odom:
-            base_link:
-              body_link:
-                camera_link:
-                  orbbec_astra_link:
-                    orbbec_astra_depth_link:
-                      orbbec_astra_depth_reference_link:
-                        {}
-                cover_link:
-                  rplidar_a2_link:
-                    laser:
-                      {}
-                fl_range:
-                  {}
-                fl_wheel_link:
-                  {}
-                fr_range:
-                  {}
-                fr_wheel_link:
-                  {}
-                imu_link:
-                  {}
-                rl_range:
-                  {}
-                rl_wheel_link:
-                  {}
-                rr_range:
-                  {}
-                rr_wheel_link:
-                  {}
+          {}
+        odom:
+          {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -338,25 +337,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.8346540927886963
+      Distance: 1.886502742767334
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.032712459564208984
-        Y: -0.015301265753805637
-        Z: -0.034366730600595474
+        X: 0.2581230103969574
+        Y: 0.0783192589879036
+        Z: 0.043764304369688034
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.9447961449623108
+      Pitch: 0.494796484708786
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: 4.6473894119262695
+      Yaw: 3.152390241622925
     Saved: ~
 Window Geometry:
   Displays:
