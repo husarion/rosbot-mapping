@@ -1,42 +1,35 @@
+x-dds-configs:
+  - &client_config { network_mode: host, ipc: host, configs: [ client.xml ], env_file: dds/client.env }
+  - &server_config { network_mode: host, ipc: host, configs: [ server.xml ], env_file: dds/server.env }
+
+configs: 
+  client.xml: { file: dds/client.xml }
+  server.xml: { file: dds/server.xml }
+
 services:
 
   discovery-server:
+    <<: *server_config
     image: ros:humble-ros-core
-    network_mode: host
-    ipc: host
-    command: fast-discovery-server -i 0
+    command: fast-discovery-server -x /server.xml
 
   rplidar:
+    <<: *client_config
     image: husarion/rplidar:humble-22-11-17
-    network_mode: host
-    ipc: host
     devices:
       - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
-    environment:
-      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   rosbot:
+    <<: *client_config
     image: husarion/rosbot:humble-22-11-17
-    network_mode: host
-    ipc: host
-    # In rosbot service superclient configuration is necessary, because ros2 controllers spawner waits for controller_manager services
-    # and they can't be listed in regular client configuration 
-    volumes:
-      - ./superclient-dds.xml:/dds-config.xml
-    environment:
-      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
-      - FASTRTPS_DEFAULT_PROFILES_FILE=/dds-config.xml
     command: ros2 launch rosbot_bringup rosbot_bringup.launch.py
   
   microros:
+    <<: *client_config
     image: microros/micro-ros-agent:humble
-    network_mode: host
-    ipc: host
     devices:
       - ${SERIAL_PORT:?err}
     volumes:
       - ./micro-ros_entrypoint.sh:/micro-ros_entrypoint.sh
-    environment:
-      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
     command: serial -D $SERIAL_PORT serial -b 576000 # -v6

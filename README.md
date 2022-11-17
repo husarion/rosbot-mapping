@@ -4,6 +4,8 @@ A GitHub template for ROSbot: creating a map using Slam Toolbox
 
 ## Quick Start
 
+ROSbot and your laptop need to be in the same Husarnet network. Set ROSbot 2.0 Husarnet hostname to `rosbotabc` (it is used in DDS config files: `/dds/client.xml` and `/dds/server.xml`).
+
 Connect a gamepad to USB port of your PC/laptop. 
 
 Then create `.env` file 
@@ -12,10 +14,9 @@ Then create `.env` file
 cp .env.template .env
 ```
 
-and paste IP address of ROSbot there.
+and check you LIDAR configs:
 
 ```
-ROSBOT_IP=192.168.0.153
 LIDAR_SERIAL=/dev/ttyUSB0
 LIDAR_BAUDRATE=115200
 ```
@@ -31,7 +32,7 @@ docker compose -f compose.rosbot.yaml up
 Sync workspace with ROSbot
 
 ```bash
-./sync_with_rosbot.sh $ROSBOT_IP
+./sync_with_rosbot.sh rosbotabc
 ```
 
 ```bash
