@@ -1,7 +1,8 @@
 services:
 
   rviz:
-    image: husarion/rviz2:galactic-22-11-15
+    # image: husarion/rviz2:galactic-22-11-15
+    image: husarion/rviz2:galactic
     network_mode: host
     ipc: host
     volumes:
@@ -13,7 +14,7 @@ services:
       - ROS_DISCOVERY_SERVER=${ROSBOT_IP:?err}:11811
 
   joy2twist:
-    image: husarion/joy2twist:humble-22-11-15
+    image: husarion/joy2twist:humble-22-11-17
     network_mode: host
     ipc: host
     devices:
@@ -27,7 +28,7 @@ services:
         joy2twist_params_file:=/joy2twist.yaml
 
   mapping:
-    image: husarion/slam-toolbox:humble-22-09-19
+    image: husarion/slam-toolbox:humble
     container_name: slam-toolbox
     network_mode: host
     ipc: host

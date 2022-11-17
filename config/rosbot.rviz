@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /tf1
         - /tf1/Frames1
+        - /scan1
         - /robot_model1
       Splitter Ratio: 0.6294117569923401
     Tree Height: 1541
@@ -160,7 +161,7 @@ Visualization Manager:
       Axis: Z
       Channel Name: intensity
       Class: rviz_default_plugins/LaserScan
-      Color: 255; 255; 255
+      Color: 255; 0; 0
       Color Transformer: FlatColor
       Decay Time: 0
       Enabled: true
@@ -189,24 +190,104 @@ Visualization Manager:
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: /robot_models/rosbot2/rosbot2.urdf
-      Description Source: File
+      Description Source: Topic
       Description Topic:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /robot_description
-      Enabled: false
+      Enabled: true
       Links:
         All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        body_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        cover_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fl_range:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        fl_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fr_range:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        fr_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        orbbec_astra_depth_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        orbbec_astra_depth_reference_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        orbbec_astra_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_range:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rl_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rplidar_a2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rr_range:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rr_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: robot_model
       TF Prefix: ""
       Update Interval: 0
-      Value: false
+      Value: true
       Visual Enabled: true
   Enabled: true
   Global Options:
@@ -254,7 +335,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.5487525463104248
+      Distance: 2.729430913925171
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
