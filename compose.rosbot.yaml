@@ -12,7 +12,7 @@ services:
 
   discovery-server:
     <<: *server_config
-    image: ros:humble-ros-core
+    image: husarion/ros:humble-ros-core-22-11-17
     command: fast-discovery-server -x /server.xml
 
   rplidar:
@@ -29,9 +29,7 @@ services:
   
   microros:
     <<: *simple_config
-    image: microros/micro-ros-agent:humble
+    image: husarion/micro-ros-agent:humble-22-11-17
     devices:
       - ${SERIAL_PORT:?err}
-    volumes:
-      - ./micro-ros_entrypoint.sh:/micro-ros_entrypoint.sh
     command: serial -D $SERIAL_PORT serial -b 576000 # -v6
