@@ -1,8 +1,7 @@
 services:
 
   rviz:
-    # image: husarion/rviz2:galactic-22-11-15
-    image: husarion/rviz2:galactic
+    image: husarion/rviz2:galactic-22-11-17
     network_mode: host
     ipc: host
     volumes:
@@ -28,7 +27,7 @@ services:
         joy2twist_params_file:=/joy2twist.yaml
 
   mapping:
-    image: husarion/slam-toolbox:humble
+    image: husarion/slam-toolbox:humble-22-11-17
     container_name: slam-toolbox
     network_mode: host
     ipc: host

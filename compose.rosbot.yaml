@@ -7,7 +7,7 @@ services:
     command: fast-discovery-server -i 0
 
   rplidar:
-    image: husarion/rplidar:humble
+    image: husarion/rplidar:humble-22-11-17
     network_mode: host
     ipc: host
     devices:
@@ -17,7 +17,7 @@ services:
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   rosbot:
-    image: husarion/rosbot:humble
+    image: husarion/rosbot:humble-22-11-17
     network_mode: host
     ipc: host
     # In rosbot service superclient configuration is necessary, because ros2 controllers spawner waits for controller_manager services

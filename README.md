@@ -1,10 +1,10 @@
 # rosbot-mapping
 
-A GitHub template for ROSbot: creating a map a using Slam Toolbox 
+A GitHub template for ROSbot: creating a map using Slam Toolbox 
 
 ## Quick Start
 
-Connect a gampad to USB port of your PC/laptop. 
+Connect a gamepad to USB port of your PC/laptop. 
 
 Then create `.env` file 
 
