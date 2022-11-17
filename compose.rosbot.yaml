@@ -1,10 +1,12 @@
 x-dds-configs:
   - &client_config { network_mode: host, ipc: host, configs: [ client.xml ], env_file: dds/client.env }
   - &server_config { network_mode: host, ipc: host, configs: [ server.xml ], env_file: dds/server.env }
+  - &simple_config { network_mode: host, ipc: host, configs: [ simple.xml ], env_file: dds/simple.env }
 
 configs: 
   client.xml: { file: dds/client.xml }
   server.xml: { file: dds/server.xml }
+  simple.xml: { file: dds/simple.xml }
 
 services:
 
@@ -14,19 +16,19 @@ services:
     command: fast-discovery-server -x /server.xml
 
   rplidar:
-    <<: *client_config
+    <<: *simple_config
     image: husarion/rplidar:humble-22-11-17
     devices:
       - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   rosbot:
-    <<: *client_config
+    <<: *simple_config
     image: husarion/rosbot:humble-22-11-17
     command: ros2 launch rosbot_bringup rosbot_bringup.launch.py
   
   microros:
-    <<: *client_config
+    <<: *simple_config
     image: microros/micro-ros-agent:humble
     devices:
       - ${SERIAL_PORT:?err}

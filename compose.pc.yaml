@@ -1,15 +1,17 @@
 x-dds-configs:
   - &client_config { network_mode: host, ipc: host, configs: [ client.xml ], env_file: dds/client.env }
   - &server_config { network_mode: host, ipc: host, configs: [ server.xml ], env_file: dds/server.env }
+  - &simple_config { network_mode: host, ipc: host, configs: [ simple.xml ], env_file: dds/simple.env }
 
 configs: 
   client.xml: { file: dds/client.xml }
   server.xml: { file: dds/server.xml }
+  simple.xml: { file: dds/simple.xml }
 
 services:
 
   rviz:
-    <<: *client_config
+    <<: *simple_config
     image: husarion/rviz2:humble-22-11-17
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
@@ -19,7 +21,7 @@ services:
       - LIBGL_ALWAYS_SOFTWARE=1
 
   joy2twist:
-    <<: *client_config
+    <<: *simple_config
     image: husarion/joy2twist:humble-22-11-17
     devices:
       - /dev/input
@@ -30,7 +32,7 @@ services:
         joy2twist_params_file:=/joy2twist.yaml
 
   mapping:
-    <<: *client_config
+    <<: *simple_config
     image: husarion/slam-toolbox:humble-22-11-17
     container_name: slam-toolbox
     volumes:
