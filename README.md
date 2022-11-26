@@ -25,24 +25,7 @@ DDS_CONFIG=DEFAULT
 **Notes:**
 - If you have RPLIDAR A3 or A2M12 (with violet border around the lenses) set: `LIDAR_BAUDRATE=256000`. Otherwise (for older A2 LIDARs): `LIDAR_BAUDRATE=115200`.
 - Usually RPLIDAR is listed under `/dev/ttyUSB0`, but verify it with `ls -la /dev/ttyUSB*` command.
-- With `DDS_CONFIG=DEFAULT` your robot and laptop need to be in the same LAN network. If you want to use this demo over the Internet, set `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` and enable Husarnet on ROSbot with:
-    ```
-    sudo systemctl enable husarnet && \
-    sudo systemctl start husarnet
-    ```
-    And [install Husarnet](https://husarnet.com/docs#using-husarnet) on your PC. Then find a Join Code at your account at https://app.husarnet.com and connect your devices to the Husarnet network with:
-
-    ```bash
-    # run it on your computer
-    sudo husarnet join $JOINCODE my-laptop
-    ```
-
-    ```bash
-    # run it on your ROSbot
-    sudo husarnet join $JOINCODE rosbot2r
-    ```
-
-    After that your devices are in the same Husarnet network.
+- With `DDS_CONFIG=DEFAULT` your robot and laptop need to be in the same LAN network. If you want to use this demo over the Internet, set `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` and [enable Husarnet on ROSbot and you PC](https://husarion.com/manuals/rosbot/operating-system-reinstallation/)
 
 Sync workspace with ROSbot
 
