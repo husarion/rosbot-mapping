@@ -55,7 +55,7 @@ docker compose -f compose.pc.yaml up
 > /flash-firmware.py /root/firmware.bin
 > ```
 
-In the ROSbot's shell execute (in `/home/husarion/rosbot-mapping-vpn` directory)
+In the ROSbot's shell execute (in `/home/husarion/rosbot-mapping` directory)
 
 ```bash
 docker compose -f compose.rosbot.yaml up
