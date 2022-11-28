@@ -8,13 +8,7 @@ Create a map of the unknow environment with ROSbot controlled over the Internet 
 
 Connect a gamepad to USB port of your PC/laptop. 
 
-Then create `.env` file 
-
-```bash
-cp .env.template .env
-```
-
-Check your configs
+Check your configs in `.env` file
 
 ```
 LIDAR_BAUDRATE=256000
