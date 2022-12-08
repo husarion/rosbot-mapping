@@ -1,7 +1,7 @@
 services:
 
   rosbot:
-    image: husarion/rosbot:humble-22-11-25
+    image: husarion/rosbot:humble-22-12-08
     network_mode: host
     ipc: host
     environment:
@@ -10,18 +10,18 @@ services:
     command: ros2 launch rosbot_bringup rosbot_bringup.launch.py
   
   microros:
-    image: husarion/micro-ros-agent:humble-22-11-25
+    image: husarion/micro-ros-agent:humble-22-12-07
     network_mode: host
     ipc: host
     devices:
       - ${SERIAL_PORT:?err}
     environment:
       - DDS_CONFIG
-      - RMW_IMPLEMENTATION
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
     command: ros2 run micro_ros_agent micro_ros_agent serial -D $SERIAL_PORT serial -b 576000 # -v6
 
   rplidar:
-    image: husarion/rplidar:humble-22-11-25
+    image: husarion/rplidar:humble-22-12-07
     network_mode: host
     ipc: host
     devices:
@@ -32,7 +32,7 @@ services:
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   mapping:
-    image: husarion/slam-toolbox:humble-22-11-25
+    image: husarion/slam-toolbox:humble-22-12-07
     network_mode: host
     ipc: host
     volumes:
