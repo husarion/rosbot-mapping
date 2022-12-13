@@ -2,9 +2,6 @@
 
 Create a map of the unknow environment with ROSbot controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/). 
 
-
-(with `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` env) or (with `DDS_CONFIG=DEFAULT` env).
-
 ## Quick Start
 
 ### PC
@@ -46,16 +43,16 @@ Sync workspace with ROSbot:
 ./sync_with_rosbot.sh <ROSbot_ip>
 ```
 
-Open new terminal on PC and run Rviz depending on whether you [have](https://github.com/husarion/rosbot-mapping#with-gamepad-connected-to-pc) a gamepad or [not](https://github.com/husarion/rosbot-mapping#without-gamepad). Then you will be able to control the ROSbot and create map of the environment. The map os being saved automatically in the `rosbot-mapping/maps` folder.
+Open new terminal on PC and run Rviz depending on whether you [have](https://github.com/husarion/rosbot-mapping#with-the-gamepad-connected-to-pc) a gamepad or [not](https://github.com/husarion/rosbot-mapping#without-the-gamepad). Then you will be able to control the ROSbot and create map of the environment. The map os being saved automatically in the `rosbot-mapping/maps` folder.
 
-#### With gamepad connected to PC
+#### With the gamepad connected to PC
 
 ```bash
 xhost +local:docker && \
 docker compose -f compose.pc.yaml up
 ```
 
-#### Without gamepad
+#### Without the gamepad 
 
 ```bash
 xhost +local:docker && \
