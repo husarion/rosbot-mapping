@@ -82,7 +82,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 > ```
 > docker stop rosbot microros || true && docker run \
 > --rm -it --privileged \
-> husarion/rosbot:humble-22-11-25 \
+> husarion/rosbot:humble-22-12-08 \
 > /flash-firmware.py /root/firmware.bin
 > ```
 
