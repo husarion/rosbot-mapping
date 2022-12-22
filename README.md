@@ -105,7 +105,7 @@ xhost +local:docker && \
 docker compose -f compose.sim.webots.yaml up
 ```
 
-And in the second terminal start `telop-twist-keyboard` for manual ROSbot XL control:
+And in the second terminal start `telop-twist-keyboard` for manual ROSbot 2R control:
 
 ```bash
 docker exec -it rviz bash
