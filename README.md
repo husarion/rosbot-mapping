@@ -1,8 +1,6 @@
 # rosbot-mapping
 
-Create a map of the unknow environment with ROSbot controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/). 
-
-## Quick Start (real robot)
+Create a map of the unknow environment with ROSbot 2 PRO or ROSbot 2R controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/). 
 
 ### PC
 
@@ -37,7 +35,7 @@ RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 - If you have RPLIDAR A3 or A2M12 (with violet border around the lenses) set: `LIDAR_BAUDRATE=256000`. Otherwise (for older A2 LIDARs): `LIDAR_BAUDRATE=115200`.
 - With `DDS_CONFIG=DEFAULT` your robot and laptop need to be in the same LAN network. If you want to use this demo over the Internet, set `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` and [enable Husarnet on ROSbot and you PC](https://husarion.com/manuals/rosbot/remote-access/).
 
-Sync workspace with ROSbot:
+To sync workspace with ROSbot execute (in `rosbot-mapping` directory):
 
 ```bash
 ./sync_with_rosbot.sh <ROSbot_ip>
