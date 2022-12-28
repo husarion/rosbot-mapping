@@ -41,16 +41,16 @@ To sync workspace with ROSbot execute (in `rosbot-mapping` directory):
 ./sync_with_rosbot.sh <ROSbot_ip>
 ```
 
-Open new terminal on PC and run Rviz depending on whether you [have](https://github.com/husarion/rosbot-mapping#with-the-gamepad-connected-to-pc) a gamepad or [not](https://github.com/husarion/rosbot-mapping#without-the-gamepad). Then you will be able to control the ROSbot and create map of the environment. The map os being saved automatically in the `rosbot-mapping/maps` folder.
+Open new terminal on PC and run RViz depending on whether you [have](https://github.com/husarion/rosbot-mapping#option-1-with-the-gamepad-connected-to-pc) a gamepad or [not](https://github.com/husarion/rosbot-mapping#option-2-without-the-gamepad). Then you will be able to control the ROSbot and create map of the environment. The map is being saved automatically in the `rosbot-mapping/maps` folder.
 
-#### With the gamepad connected to PC
+#### Option 1: With the gamepad connected to PC
 
 ```bash
 xhost +local:docker && \
 docker compose -f compose.pc.yaml up
 ```
 
-#### Without the gamepad 
+#### Option 2: Without the gamepad 
 
 ```bash
 xhost +local:docker && \
