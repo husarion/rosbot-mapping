@@ -12,7 +12,7 @@ git clone https://github.com/husarion/rosbot-mapping.git
 
 **Connect a gamepad to USB port of your PC/laptop** (the steering without the gamepad will also be described as an alternative).
 
-Check your configs in `.env` file:
+Check your configs in the `.env` file:
 
 ```
 LIDAR_SERIAL=/dev/ttyUSB0
@@ -41,7 +41,7 @@ To sync workspace with ROSbot execute (in `rosbot-mapping` directory):
 ./sync_with_rosbot.sh <ROSbot_ip>
 ```
 
-Open new terminal on PC and run RViz depending on whether you [have](https://github.com/husarion/rosbot-mapping#option-1-with-the-gamepad-connected-to-pc) a gamepad or [not](https://github.com/husarion/rosbot-mapping#option-2-without-the-gamepad). Then you will be able to control the ROSbot and create map of the environment. The map is being saved automatically in the `rosbot-mapping/maps` folder.
+Open a new terminal on PC and run RViz depending on whether you [have](https://github.com/husarion/rosbot-mapping#option-1-with-the-gamepad-connected-to-pc) a gamepad or [not](https://github.com/husarion/rosbot-mapping#option-2-without-the-gamepad). Then you will be able to control the ROSbot and create map of the environment. The map is being saved automatically in the `rosbot-mapping/maps` folder.
 
 #### Option 1: With the gamepad connected to PC
 
