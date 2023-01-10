@@ -35,7 +35,7 @@ RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 - If you have RPLIDAR A3 or A2M12 (with violet border around the lenses) set: `LIDAR_BAUDRATE=256000`. Otherwise (for older A2 LIDARs): `LIDAR_BAUDRATE=115200`.
 - With `DDS_CONFIG=DEFAULT` your robot and laptop need to be in the same LAN network. If you want to use this demo over the Internet, set `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` and [enable Husarnet on ROSbot and you PC](https://husarion.com/manuals/rosbot/remote-access/).
 
-To sync workspace with ROSbot execute (in `rosbot-mapping` directory):
+To sync workspace with ROSbot (works with the newest [OS images](https://husarion.com/manuals/rosbot/operating-system-reinstallation/)) execute (in `rosbot-mapping` directory):
 
 ```bash
 ./sync_with_rosbot.sh <ROSbot_ip>
