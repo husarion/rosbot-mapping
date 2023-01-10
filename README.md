@@ -1,6 +1,6 @@
 # rosbot-mapping
 
-Create a map of the unknow environment with ROSbot 2 PRO or ROSbot 2R controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/). 
+Create a map of the unknow environment with ROSbot 2 PRO or ROSbot 2R controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/).
 
 ### PC
 
@@ -50,7 +50,7 @@ xhost +local:docker && \
 docker compose -f compose.pc.yaml up
 ```
 
-#### Option 2: Without the gamepad 
+#### Option 2: Without the gamepad
 
 ```bash
 xhost +local:docker && \
