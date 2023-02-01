@@ -29,7 +29,7 @@ services:
       - DISPLAY=${DISPLAY:?err}
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
-    command: ros2 launch webots_ros2_husarion robot_launch.py
+    command: ros2 launch webots_ros2_husarion robot_launch.py robot_name:=rosbot
 
   mapping:
     image: husarion/slam-toolbox:humble
