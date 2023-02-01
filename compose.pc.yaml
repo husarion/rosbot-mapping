@@ -1,7 +1,7 @@
 services:
 
   map-saver:
-    image: husarion/nav2-map-server:humble-22-12-07
+    image: husarion/nav2-map-server:humble
     network_mode: host
     ipc: host
     volumes:
@@ -12,7 +12,7 @@ services:
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
 
   rviz:
-    image: husarion/rviz2:humble-22-12-08
+    image: husarion/rviz2:humble
     network_mode: host
     ipc: host
     volumes:
@@ -25,7 +25,7 @@ services:
       - LIBGL_ALWAYS_SOFTWARE=1
 
   joy2twist:
-    image: husarion/joy2twist:humble-22-12-07
+    image: husarion/joy2twist:humble
     network_mode: host
     ipc: host
     devices:
