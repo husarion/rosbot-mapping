@@ -1,22 +1,33 @@
 #!/bin/bash
 set -e
 
-# export RMW_IMPLEMENTATION_TEMP=$RMW_IMPLEMENTATION
-# export FASTRTPS_DEFAULT_PROFILES_FILE_TEMP=$FASTRTPS_DEFAULT_PROFILES_FILE
-# export CYCLONEDDS_URI_TEMP=$CYCLONEDDS_URI
+# Generate Husarnet DDS config if DISCOVERY_SERVER_PORT is set and not empty.
+# For FastDDS Discovery Server - server 
+if [[ -n "${DISCOVERY_SERVER_PORT:-}" ]]; then
+    husarnet-dds singleshot
+fi
 
-# generate configs for FastDDS
-export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-export FASTRTPS_DEFAULT_PROFILES_FILE=/fastdds.xml
-husarnet-dds singleshot
-
-# # generate configs for Cyclone
-# export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-# export CYCLONEDDS_URI=file:///cyclonedds.xml
-# husarnet-dds singleshot
-
-# # restore defaults:
-# export RMW_IMPLEMENTATION=$RMW_IMPLEMENTATION_TEMP
+# Generate Husarnet DDS config if:
+# -RMW_IMPLEMENTATION is rmw_fastrtps_cpp,
+# FASTRTPS_DEFAULT_PROFILES_FILE is set and not empty, and the file specified by
+# FASTRTPS_DEFAULT_PROFILES_FILE doesn't exist in the file system.
+# OR
+# - RMW_IMPLEMENTATION is rmw_cyclonedds_cpp,
+# CYCLONEDDS_URI is set and not empty, and the file specified by
+# CYCLONEDDS_URI doesn't exist in the file system.
+if
+    (
+        [[ "$RMW_IMPLEMENTATION" == "rmw_fastrtps_cpp" ]] &&
+            [[ -n "${FASTRTPS_DEFAULT_PROFILES_FILE:-}" ]] &&
+            [[ ! -e "$FASTRTPS_DEFAULT_PROFILES_FILE" ]]
+    ) || (
+        [[ "$RMW_IMPLEMENTATION" == "rmw_cyclonedds_cpp" ]] &&
+            [[ -n "${CYCLONEDDS_URI:-}" ]] &&
+            [[ ! -e "${CYCLONEDDS_URI#file://}" ]]
+    )
+then
+    husarnet-dds singleshot
+fi
 
 # setup ros environment
 source "/opt/ros/$ROS_DISTRO/setup.bash"

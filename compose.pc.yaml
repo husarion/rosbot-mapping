@@ -9,6 +9,9 @@ services:
       - ./maps:/maps
     environment:
       - RMW_IMPLEMENTATION
+      - CYCLONEDDS_URI
+      - FASTRTPS_DEFAULT_PROFILES_FILE
+      - ROS_DISCOVERY_SERVER
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
 
   rviz:
@@ -21,6 +24,9 @@ services:
       - ./config/rosbot.rviz:/root/.rviz2/default.rviz
     environment:
       - RMW_IMPLEMENTATION
+      - CYCLONEDDS_URI
+      - FASTRTPS_DEFAULT_PROFILES_FILE
+      - ROS_DISCOVERY_SERVER
       - DISPLAY=${DISPLAY:?err}
       - LIBGL_ALWAYS_SOFTWARE=1
 
@@ -35,6 +41,9 @@ services:
       - ./config/joy2twist.yaml:/joy2twist.yaml
     environment:
       - RMW_IMPLEMENTATION
+      - CYCLONEDDS_URI
+      - FASTRTPS_DEFAULT_PROFILES_FILE
+      - ROS_DISCOVERY_SERVER
     command: >
       ros2 launch joy2twist gamepad_controller.launch.py
         joy2twist_params_file:=/joy2twist.yaml

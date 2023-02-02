@@ -1,5 +1,14 @@
 services:
 
+  ds:
+    # image: husarion/rosbot:humble
+    build: { args: [ IMAGE=husarion/rosbot:humble ] }
+    network_mode: host
+    ipc: host
+    environment:
+      - DISCOVERY_SERVER_PORT
+    command: fast-discovery-server -x /var/tmp/husarnet-dds/fastdds-ds-server.xml
+
   rosbot:
     # image: husarion/rosbot:humble
     build: { args: [ IMAGE=husarion/rosbot:humble ] }
@@ -7,6 +16,9 @@ services:
     ipc: host
     environment:
       - RMW_IMPLEMENTATION
+      - FASTRTPS_DEFAULT_PROFILES_FILE
+      - CYCLONEDDS_URI
+      - ROS_DISCOVERY_SERVER
     command: ros2 launch rosbot_bringup rosbot_bringup.launch.py
   
   microros:
@@ -18,6 +30,8 @@ services:
       - ${SERIAL_PORT:?err}
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+      - FASTRTPS_DEFAULT_PROFILES_FILE=${FASTRTPS_DEFAULT_PROFILES_FILE:-/fastdds.xml}
+      - ROS_DISCOVERY_SERVER
     command: ros2 run micro_ros_agent micro_ros_agent serial -D $SERIAL_PORT serial -b 576000 # -v6
 
   rplidar:
@@ -29,6 +43,9 @@ services:
       - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
     environment:
       - RMW_IMPLEMENTATION
+      - CYCLONEDDS_URI
+      - FASTRTPS_DEFAULT_PROFILES_FILE
+      - ROS_DISCOVERY_SERVER
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   mapping:
@@ -40,6 +57,9 @@ services:
       - ./config/slam_toolbox_params.yaml:/slam_params.yaml
     environment:
       - RMW_IMPLEMENTATION
+      - CYCLONEDDS_URI
+      - FASTRTPS_DEFAULT_PROFILES_FILE
+      - ROS_DISCOVERY_SERVER
     command: >
       ros2 launch slam_toolbox online_sync_launch.py
         slam_params_file:=/slam_params.yaml
