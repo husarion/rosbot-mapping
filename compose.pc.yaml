@@ -1,39 +1,39 @@
 services:
 
   map-saver:
-    image: husarion/nav2-map-server:humble
+    image: husarion/nav2-map-server:humble-nightly
     network_mode: host
     ipc: host
     volumes:
       - ./maps:/maps
+    env_file: ${NET_CONFIG_FILE:-.env.lan}
     environment:
-      - DDS_CONFIG
       - RMW_IMPLEMENTATION
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
 
   rviz:
-    image: husarion/rviz2:humble
+    image: husarion/rviz2:galactic-nightly
     network_mode: host
     ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./config/rosbot.rviz:/root/.rviz2/default.rviz
+    env_file: ${NET_CONFIG_FILE:-.env.lan}
     environment:
-      - DDS_CONFIG
       - RMW_IMPLEMENTATION
       - DISPLAY=${DISPLAY:?err}
       - LIBGL_ALWAYS_SOFTWARE=1
 
   joy2twist:
-    image: husarion/joy2twist:humble
+    image: husarion/joy2twist:humble-nightly
     network_mode: host
     ipc: host
     devices:
       - /dev/input
     volumes:
       - ./config/joy2twist.yaml:/joy2twist.yaml
+    env_file: ${NET_CONFIG_FILE:-.env.lan}
     environment:
-      - DDS_CONFIG
       - RMW_IMPLEMENTATION
     command: >
       ros2 launch joy2twist gamepad_controller.launch.py
