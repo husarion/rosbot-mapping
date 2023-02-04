@@ -1,7 +1,7 @@
 services:
 
   rviz:
-    image: husarion/rviz2:humble
+    image: husarion/rviz2:humble-nightly
     runtime: nvidia
     container_name: rviz
     network_mode: host
@@ -17,7 +17,7 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=all
 
   rosbot:
-    image: husarion/webots:humble
+    image: husarion/webots:humble-nightly
     runtime: nvidia
     network_mode: host
     ipc: host
@@ -32,7 +32,7 @@ services:
     command: ros2 launch webots_ros2_husarion robot_launch.py robot_name:=rosbot
 
   mapping:
-    image: husarion/slam-toolbox:humble
+    image: husarion/slam-toolbox:humble-nightly
     network_mode: host
     ipc: host
     volumes:
@@ -46,7 +46,7 @@ services:
         use_sim_time:=True
 
   map-saver:
-    image: husarion/nav2-map-server:humble
+    image: husarion/nav2-map-server:humble-nightly
     network_mode: host
     ipc: host
     volumes:
