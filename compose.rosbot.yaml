@@ -4,9 +4,7 @@ services:
     image: husarion/rosbot:humble
     network_mode: host
     ipc: host
-    env_file: ${NET_CONFIG_FILE:-.env.lan}
-    environment:
-      - RMW_IMPLEMENTATION
+    env_file: net.env
     command: ros2 launch rosbot_bringup bringup.launch.py
   
   microros:
@@ -15,9 +13,7 @@ services:
     ipc: host
     devices:
       - ${SERIAL_PORT:?err}
-    env_file: ${NET_CONFIG_FILE:-.env.lan}
-    environment:
-      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+    env_file: net.env
     command: ros2 run micro_ros_agent micro_ros_agent serial -D $SERIAL_PORT serial -b 576000 # -v6
 
   rplidar:
@@ -26,9 +22,7 @@ services:
     ipc: host
     devices:
       - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
-    env_file: ${NET_CONFIG_FILE:-.env.lan}
-    environment:
-      - RMW_IMPLEMENTATION
+    env_file: net.env
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
   
   mapping:
@@ -37,9 +31,7 @@ services:
     ipc: host
     volumes:
       - ./config/slam_toolbox.yaml:/slam_params.yaml
-    env_file: ${NET_CONFIG_FILE:-.env.lan}
-    environment:
-      - RMW_IMPLEMENTATION
+    env_file: net.env
     command: >
       ros2 launch slam_toolbox online_sync_launch.py
         slam_params_file:=/slam_params.yaml

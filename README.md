@@ -12,26 +12,48 @@ git clone https://github.com/husarion/rosbot-mapping.git
 
 **Connect a [gamepad](https://husarion.com/tutorials/other-tutorials/rosbot-gamepad/) to USB port of your PC/laptop** (the steering without the gamepad will also be described as an alternative).
 
-Check your configs in the `.env` file:
+Check your **hardware configs** in the `.env` file:
 
 ```bash
+# =======================================
+# Hardware config
+# =======================================
 LIDAR_SERIAL=/dev/ttyUSB0
 
 # for RPLIDAR A2M8 (red circle around the sensor):
 # LIDAR_BAUDRATE=115200
 # for RPLIDAR A2M12 and A3 (violet circle around the sensor):
-LIDAR_BAUDRATE=256000
-
-RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-# RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-
-NET_CONFIG_FILE=.env.lan
-# NET_CONFIG_FILE=.env.vpn             
+LIDAR_BAUDRATE=256000           
 ```
 
 **Notes:**
 - Usually RPLIDAR is listed under `/dev/ttyUSB0`, but verify it with `ls -la /dev/ttyUSB*` command.
 - If you have RPLIDAR A3 or A2M12 (with violet border around the lenses) set: `LIDAR_BAUDRATE=256000`. Otherwise (for older A2 LIDARs): `LIDAR_BAUDRATE=115200`.
+
+Select your **network configuration** in the `net.env` file:
+
+```bash
+# =======================================
+# Network config options (uncomment one)
+# =======================================
+
+# 1. Fast DDS + LAN
+RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+
+# 2. Cyclone DDS + LAN
+# RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+# 3. Fast DDS + VPN
+# RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+# FASTRTPS_DEFAULT_PROFILES_FILE=/husarnet-fastdds.xml
+
+# 4. Cyclone DDS + VPN
+# RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+# CYCLONEDDS_URI=file:///husarnet-cyclonedds.xml         
+```
+
+**Notes:**
+- Husarion's docker images utilize the [husarnet-dds binary](https://github.com/husarnet/husarnet-dds) to create ROS 2 DDS configuration files for Husarnet VPN.
 
 To sync workspace with ROSbot (works with the newest [OS images](https://husarion.com/manuals/rosbot/operating-system-reinstallation/)) execute (in `rosbot-mapping` directory):
 
