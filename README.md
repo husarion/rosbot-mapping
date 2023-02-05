@@ -14,7 +14,7 @@ git clone https://github.com/husarion/rosbot-mapping.git
 
 Check your configs in the `.env` file:
 
-```
+```bash
 LIDAR_SERIAL=/dev/ttyUSB0
 
 # for RPLIDAR A2M8 (red circle around the sensor):
@@ -22,11 +22,11 @@ LIDAR_SERIAL=/dev/ttyUSB0
 # for RPLIDAR A2M12 and A3 (violet circle around the sensor):
 LIDAR_BAUDRATE=256000
 
-# RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+# RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 NET_CONFIG_FILE=.env.lan
-# NET_CONFIG_FILE=.env.vpn              
+# NET_CONFIG_FILE=.env.vpn             
 ```
 
 **Notes:**
@@ -78,7 +78,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 > ```
 > docker stop rosbot microros || true && docker run \
 > --rm -it --privileged \
-> husarion/rosbot:humble-nightly \
+> husarion/rosbot:humble \
 > /flash-firmware.py /root/firmware.bin
 > ```
 
