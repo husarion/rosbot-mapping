@@ -30,13 +30,13 @@ services:
     environment:
       - RMW_IMPLEMENTATION
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
-
+  
   mapping:
     image: husarion/slam-toolbox:humble-nightly
     network_mode: host
     ipc: host
     volumes:
-      - ./config/slam_toolbox_params.yaml:/slam_params.yaml
+      - ./config/slam_toolbox.yaml:/slam_params.yaml
     env_file: ${NET_CONFIG_FILE:-.env.lan}
     environment:
       - RMW_IMPLEMENTATION

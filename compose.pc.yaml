@@ -17,7 +17,7 @@ services:
     ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ./config/rosbot.rviz:/root/.rviz2/default.rviz
+      - ./config/rosbot_temp.rviz:/root/.rviz2/default.rviz
     env_file: ${NET_CONFIG_FILE:-.env.lan}
     environment:
       - RMW_IMPLEMENTATION
