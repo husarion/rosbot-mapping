@@ -1,37 +1,34 @@
+x-net-config: &net-config
+  network_mode: host
+  ipc: host
+  env_file: net.env
+
 services:
 
   rosbot:
     image: husarion/rosbot:humble
-    network_mode: host
-    ipc: host
-    env_file: net.env
+    <<: *net-config
     command: ros2 launch rosbot_bringup bringup.launch.py
   
   microros:
     image: husarion/micro-ros-agent:humble
-    network_mode: host
-    ipc: host
+    <<: *net-config
     devices:
       - ${SERIAL_PORT:?err}
-    env_file: net.env
     command: ros2 run micro_ros_agent micro_ros_agent serial -D $SERIAL_PORT serial -b 576000 # -v6
 
   rplidar:
     image: husarion/rplidar:humble
-    network_mode: host
-    ipc: host
+    <<: *net-config
     devices:
       - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
-    env_file: net.env
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
   
   mapping:
     image: husarion/slam-toolbox:humble
-    network_mode: host
-    ipc: host
+    <<: *net-config
     volumes:
       - ./config/slam_toolbox.yaml:/slam_params.yaml
-    env_file: net.env
     command: >
       ros2 launch slam_toolbox online_sync_launch.py
         slam_params_file:=/slam_params.yaml

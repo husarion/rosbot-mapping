@@ -1,29 +1,30 @@
+x-net-config: &net-config
+  network_mode: host
+  ipc: host
+  env_file: net.env
+
 services:
 
   rviz:
     image: husarion/rviz2:humble
+    <<: *net-config
     runtime: nvidia
     container_name: rviz
-    network_mode: host
-    ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./config/rosbot.rviz:/root/.rviz2/default.rviz
     environment:
-      - RMW_IMPLEMENTATION
       - DISPLAY=${DISPLAY:?err}
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
 
   rosbot:
     image: husarion/webots:humble
+    <<: *net-config
     runtime: nvidia
-    network_mode: host
-    ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     environment:
-      - RMW_IMPLEMENTATION
       - DISPLAY=${DISPLAY:?err}
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -31,12 +32,9 @@ services:
 
   mapping:
     image: husarion/slam-toolbox:humble
-    network_mode: host
-    ipc: host
+    <<: *net-config
     volumes:
       - ./config/slam_toolbox_webots.yaml:/slam_params.yaml
-    environment:
-      - RMW_IMPLEMENTATION
     command: >
       ros2 launch slam_toolbox online_sync_launch.py
         slam_params_file:=/slam_params.yaml
@@ -44,10 +42,7 @@ services:
 
   map-saver:
     image: husarion/nav2-map-server:humble
-    network_mode: host
-    ipc: host
+    <<: *net-config
     volumes:
       - ./maps:/maps
-    environment:
-      - RMW_IMPLEMENTATION
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
