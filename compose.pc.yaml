@@ -1,7 +1,22 @@
-x-net-config: &net-config
+x-net-config:
+  &net-config
   network_mode: host
   ipc: host
   env_file: net.env
+
+x-gpu-config:
+  &gpu-config
+  runtime: nvidia
+  environment:
+    - DISPLAY=${DISPLAY:?err}
+    - NVIDIA_VISIBLE_DEVICES=all
+    - NVIDIA_DRIVER_CAPABILITIES=all
+
+x-cpu-config:
+  &cpu-config
+  environment:
+    - DISPLAY=${DISPLAY:?err}
+    - LIBGL_ALWAYS_SOFTWARE=1
 
 services:
 
@@ -12,16 +27,15 @@ services:
       - ./maps:/maps
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
 
+  # if you have NVDIA GPU and NVIDIA Container Toolkit, you can replace
+  # "cpu-config" with "gpu-config"
   rviz:
     image: husarion/rviz2:galactic
-    <<: *net-config
+    <<: [ *net-config, *cpu-config ]
     container_name: rviz
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./config/rosbot.rviz:/root/.rviz2/default.rviz
-    environment:
-      - DISPLAY=${DISPLAY:?err}
-      - LIBGL_ALWAYS_SOFTWARE=1
 
   joy2twist:
     image: husarion/joy2twist:humble
