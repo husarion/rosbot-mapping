@@ -1,6 +1,6 @@
 # rosbot-mapping
 
-Create a map of the unknow environment with ROSbot 2 PRO or ROSbot 2R controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/).
+Create a map of the unknow environment with ROSbot 2 PRO or ROSbot 2R controlled in the LAN network or [over the Internet](https://husarion.com/software/os/vpn-access/).
 
 ### PC
 
